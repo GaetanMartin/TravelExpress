@@ -1,0 +1,1 @@
+<div id="copyright" class="text-right">@lang('layouts.footer')</div>
