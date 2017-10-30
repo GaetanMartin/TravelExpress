@@ -15,4 +15,4 @@ Route::get('/', function () {
     return view('pages.home');
 });
 
-Route::get('/trip', 'TravelExpress\CarController@store');
+Route::get('/trip', 'TravelExpress\CarsController@store');
