@@ -11,14 +11,17 @@
 |
 */
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/trip', 'TravelExpress\CarsController@store');
-
+// Routes for authentication
 Auth::routes();
+// Added get request to log out (only post by default)
+Route::get('/logout' , 'Auth\LoginController@logout');
 
+// Home
+Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', function(){
 	return redirect('home');
 });
 
-Route::get('/logout' , 'Auth\LoginController@logout');
+
+// Travel Express specific routes
+Route::get('/trip', 'TravelExpress\CarsController@store');
