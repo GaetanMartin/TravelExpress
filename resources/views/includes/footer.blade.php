@@ -1,4 +1,4 @@
-<div id="copyright" class="text-right">@lang('layouts.footer')</div>
+<div id="copyright" class="text-center">@lang('layouts.footer')</div>
 
 
 
