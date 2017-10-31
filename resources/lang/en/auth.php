@@ -17,10 +17,20 @@ return [
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
     'register' => 'Register',
     'name' => 'Name',
-    'email' => 'Email address',
+    'email' => 'Email Address',
     'password' => 'Password',
     'confirm_password' => 'Confirm Password',
     'already_registered' => 'Already registered? ',
+    'remember_me' => 'Remember Me',
+    'login' => 'Log In',
+    'password_forget' => 'Forgot Your Password?',
+    'join_message' => 'You don\'t have an account? Join us now!',
+
+    // Reset
+    'reset_password' => 'Reset Password',
+
+    // Email
+    'send_password_link' => 'Send Password Reset Link',
 
 
 ];
