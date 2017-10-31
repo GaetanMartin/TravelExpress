@@ -36,4 +36,13 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+
+    /**
+    * This function is automatically called after a successful login
+    */
+    protected function authenticated($request, $user)
+    {
+        $request->session()->flash('status_success', 'Welcome back ' . $user->name . ', you have been logged in');
+    }
 }

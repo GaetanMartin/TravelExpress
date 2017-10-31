@@ -12,6 +12,8 @@
 
     <div id="main" class="row">
 
+        @include('includes.flash_messages')
+
         @yield('content')
 
     </div>
