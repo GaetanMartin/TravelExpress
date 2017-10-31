@@ -18,13 +18,13 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="{{url('contact')}}"><i class="fa fa-envelope-o" aria-hidden="true"></i> @lang('layouts.nav_menu_contact')</a></li>
             	
-            	@if (Auth::check())
-            		{{-- Logged In --}}
-            		<li><a href="{{url('/logout')}}"><i class="fa fa-power-off" aria-hidden="true"></i> @lang('layouts.nav_menu_logout')</a></li>
-            	@else
+            	@guest
             		{{-- Visitor --}}
             		<li><a href="{{url('/login')}}"><i class="fa fa-user" aria-hidden="true"></i> @lang('layouts.nav_menu_login')</a></li>
-            	@endif
+            	@else
+            		{{-- Logged In --}}
+            		<li><a href="{{url('/logout')}}"><i class="fa fa-power-off" aria-hidden="true"></i> @lang('layouts.nav_menu_logout')</a></li>
+            	@endguest
             </ul>
         </div>
     </div>
