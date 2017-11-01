@@ -80,6 +80,7 @@ return [
 
     'locale' => 'en',
 
+
     /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale
@@ -165,6 +166,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         // IDE Support
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        // Internationalization
+        Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -227,6 +230,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
 
     ],
 
