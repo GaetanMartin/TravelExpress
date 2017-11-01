@@ -15,7 +15,11 @@
  * Internationalization
  * Define a group that filter all pages that must be localized
  */
-Route::group(['prefix' => LaravelLocalization::setLocale()], function()
+Route::group(
+[
+	'prefix' => LaravelLocalization::setLocale(),
+	'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+], function()
 {
 
 	// Routes for authentication
