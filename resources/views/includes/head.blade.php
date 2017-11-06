@@ -8,6 +8,8 @@
 
 <title>@lang('layouts.website_title')</title>
 
+<link rel="icon" type="image/png" href="/ic_travelexpress.png" />
+
 {{-- Main CSS --}}
 <link rel="stylesheet" href="{{ URL::asset('css/main.css') }}" />
 
