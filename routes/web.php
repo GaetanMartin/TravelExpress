@@ -29,11 +29,12 @@ Route::group(
 
 	// Home
 	Route::get('/home', 'HomeController@index')->name('home');
-	Route::get('/', function(){
+    Route::get('/contact', 'Homecontroller@contact')->name('contact');
+    Route::get('/', function(){
 		return redirect('home');
 	});
 
-	/**
+    /**
 	 * Routes where the user needs to be authentified
 	 */
 	Route::group(['middleware' => 'auth'], function()
