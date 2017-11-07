@@ -19,6 +19,7 @@ return [
     'nav_menu_login' => 'Se connecter',
     'nav_menu_register' => 'Inscription',
     'nav_menu_logout' => 'Déconnexion',
+    'nav_menu_preferences' => "Préférences",
     'nav_menu_contact' => 'Contact',
     'footer' => '© Copyright 2017 - Gaëtan Martin & Adrien Romanet',
 

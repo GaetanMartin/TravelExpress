@@ -20,11 +20,20 @@
             	
             	@guest
             		{{-- Visitor --}}
-            		<li class="{{ Route::is('login') ? 'active' : '' }}"><a href="{{url('/login')}}"><i class="fa fa-user" aria-hidden="true"></i> @lang('layouts.nav_menu_login')</a></li>
                     <li class="{{ Route::is('register') ? 'active' : '' }}"><a href="{{ route('register') }}"><i class="fa fa-user-plus" aria-hidden="true"></i> @lang('layouts.nav_menu_register')</a></li>
+                    <li class="{{ Route::is('login') ? 'active' : '' }}"><a href="{{url('/login')}}"><i class="fa fa-user" aria-hidden="true"></i> @lang('layouts.nav_menu_login')</a></li>
             	@else
             		{{-- Logged In --}}
-            		<li><a href="{{url('/logout')}}"><i class="fa fa-power-off" aria-hidden="true"></i> @lang('layouts.nav_menu_logout')</a></li>
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                            <i class="fa fa-user" aria-hidden="true"></i> {{ Auth::user()->getName() }} <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{url('/preferences')}}">@lang('layouts.nav_menu_preferences')</a></li>
+                            <li class="divider"></li>
+                            <li><a href="{{url('/logout')}}"><i class="fa fa-power-off" aria-hidden="true"></i> @lang('layouts.nav_menu_logout')</a></li>
+                        </ul>
+                    </li>
             	@endguest
             </ul>
         </div>

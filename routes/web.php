@@ -33,6 +33,20 @@ Route::group(
 		return redirect('home');
 	});
 
+	/**
+	 * Routes where the user needs to be authentified
+	 */
+	Route::group(['middleware' => 'auth'], function()
+	{
+		Route::get('/preferences', 'TravelExpress\PreferencesController@index')->name('preferences');
+		Route::resource('/users/{user}/preferences', 'TravelExpress\PreferencesController');
+	});
+
+
+
+	// Preferences
+	// Route::get('/preferences',['middleware' => 'auth', 'TravelExpress\PreferencesController@show'])->name('preferences');
+
 
 	// Travel Express specific routes
 	Route::get('/trip', 'TravelExpress\CarsController@store');
