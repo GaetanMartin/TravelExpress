@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -43,7 +44,6 @@ class LoginController extends Controller
     */
     protected function authenticated($request, $user)
     {
-        // TODO: GM translate this
-        $request->session()->flash('status_success', 'Welcome back ' . $user->getName() . ', you have been logged in');
+        $request->session()->flash('status_success', Lang::get('messages.flash_welcome', ['name' => $user->getName()]));
     }
 }
