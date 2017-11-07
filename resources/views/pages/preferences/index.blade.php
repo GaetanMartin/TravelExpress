@@ -11,7 +11,6 @@
 			@include('helpers.preferences.inline', compact('preference'))
 		</div>
 
-
 		@if($user == Auth::user())
 			<a href="/users/{{$user->id}}/preferences/edit/">Edit</a>
 		@endif
