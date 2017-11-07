@@ -12,7 +12,7 @@
 		</div>
 
 		@if($user == Auth::user())
-			<a href="/users/{{$user->id}}/preferences/edit/">Edit</a>
+			<a href="{{ route('preferences.edit', $preference->id) }}">Edit</a>
 		@endif
 
 	</div>

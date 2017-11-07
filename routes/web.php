@@ -38,8 +38,8 @@ Route::group(
 	 */
 	Route::group(['middleware' => 'auth'], function()
 	{
-		Route::get('/preferences', 'TravelExpress\PreferencesController@index')->name('preferences');
-		Route::resource('/users/{user}/preferences', 'TravelExpress\PreferencesController');
+		Route::get('/users/{user}/preferences', 'TravelExpress\PreferencesController@indexUser');
+		Route::resource('/preferences', 'TravelExpress\PreferencesController');
 	});
 
 

@@ -30,4 +30,8 @@ class User extends Authenticatable
     public function getName() {
         return $this->first_name . " " . $this->last_name;
     }
+
+    public function getPreference() {
+        return Preference::where('user_id', $this->id)->firstOrFail();
+    }
 }

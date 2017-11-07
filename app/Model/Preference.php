@@ -10,4 +10,6 @@ class Preference extends Model
      * @var string
      */
     protected $table = 'preferences';
+
+    protected $guarded = ['user_id'];
 }

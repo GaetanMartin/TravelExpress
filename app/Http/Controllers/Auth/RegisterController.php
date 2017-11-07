@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Model\User;
+use App\Model\Preference;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Validator;
@@ -28,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/preferences/edit';
 
     /**
      * Create a new controller instance.
@@ -71,6 +72,11 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+        Preference::create([
+            'user_id' => $user->id,
+        ]);        
+
         session()->flash('status_success', Lang::get('messages.flash_register_success'));
         return $user;
     }
