@@ -43,6 +43,7 @@ class LoginController extends Controller
     */
     protected function authenticated($request, $user)
     {
-        $request->session()->flash('status_success', 'Welcome back ' . $user->name . ', you have been logged in');
+        // TODO: GM translate this
+        $request->session()->flash('status_success', 'Welcome back ' . $user->getName() . ', you have been logged in');
     }
 }
