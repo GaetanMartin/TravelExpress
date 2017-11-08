@@ -15,4 +15,8 @@ return [
     'flash_preferences_updated' => 'Preferences successfully updated! ',
     'flash_register_success' => 'You have been successfully registered. ',
 
+    // Preferences
+    'preferences' => 'Preferences',
+    'preferences_edit' => 'Edit you preferences',
+
 ];

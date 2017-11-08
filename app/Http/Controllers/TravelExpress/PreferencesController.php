@@ -28,38 +28,6 @@ class PreferencesController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    // public function create()
-    // {
-    //     //
-    // }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    // public function store(Request $request)
-    // {
-    //     //
-    // }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    /*public function show($id)
-    {
-        //
-    }*/
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -89,13 +57,20 @@ class PreferencesController extends Controller
                 'chat_accepted' => 'boolean',
             ]);
 
-        $input = $request->all();
+        $fields = ['smoker_accepted', 'pet_accepted', 'radio_accepted', 'chat_accepted'];
+        
+        // Since the checkboxes unchecked are not sent via post, we add them into the inputs with value 0
+        $inputs = $request->only($fields);
+        foreach ($fields as $field) {
+            if (empty($inputs[$field])) {
+                $inputs[$field] = 0;
+            }
+        }
 
-        $preference = Preference::findOrFail($id);
-
-        $preference->fill($input)->save();
+        Preference::findOrFail($id)->fill($inputs)->save();
 
         $request->session()->flash('status_success', Lang::get('messages.flash_preferences_updated'));
+
         return redirect('/preferences');
     }
 }
