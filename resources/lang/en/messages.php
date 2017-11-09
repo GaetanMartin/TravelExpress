@@ -15,6 +15,7 @@ return [
     'flash_preferences_updated' => 'Preferences successfully updated! ',
     'flash_register_success' => 'You have been successfully registered. ',
     'flash_car_updated' => 'Your car has been successfully updated! ',
+    'flash_car_created' => 'Your car has been successfully registered! ',
 
     // Preferences
     'preferences' => 'Preferences',

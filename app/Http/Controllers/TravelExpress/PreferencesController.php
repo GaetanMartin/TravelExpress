@@ -56,12 +56,6 @@ class PreferencesController extends Controller
                 'chat_accepted' => 'boolean',
             ]);
 
-        $preference = Preference::findOrFail($id);
-
-        if (! $preference->user_id === Auth::user()->id) {
-            return redirect('/preferences');
-        }
-
         $fields = ['smoker_accepted', 'pet_accepted', 'radio_accepted', 'chat_accepted'];
         
         // Since the checkboxes unchecked are not sent via post, we add them into the inputs with value 0
@@ -72,7 +66,7 @@ class PreferencesController extends Controller
             }
         }
 
-        $preference->fill($inputs)->save();
+        Preference::where('user_id', Auth::user()->id)->findOrFail($id)->fill($inputs)->save();
 
         $request->session()->flash('status_success', Lang::get('messages.flash_preferences_updated'));
 
