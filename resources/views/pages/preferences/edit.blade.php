@@ -1,7 +1,6 @@
-@extends('layouts.default')
+@extends('forms.default_form', ['form_title' => __('form.preference_edit')])
 
-@section('content')
-
+@section('form')
 
 {{ Form::macro('labelField', function($name, $message) {
         return Form::label($name, $message, ['class' => 'form-check-label']); }) }}
@@ -24,31 +23,22 @@
         return $result;
 }) }}
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <div class="panel panel-default">
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-                <div class="panel-heading">@lang('form.preference_edit')</div>
-                <div class="panel-body">
-                    {{ Form::model($preference, ['method'=> 'PATCH', 'route' => ['preferences.update', $preference->id]]) }}
-                        {!! Form::inputFull('smoker_accepted', 'fa fa-fire') !!}
-                        {!! Form::inputFull('pet_accepted', 'fa fa-paw') !!}
-                        {!! Form::inputFull('radio_accepted', 'fa fa-music') !!}
-                        {!! Form::inputFull('chat_accepted', 'fa fa-comments') !!}
-                        {{ Form::submit(__('form.save'), ['class' => 'btn btn-primary']) }}
-                    {{ Form::close() }}
-                </div>
-            </div>
-        </div>
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
     </div>
-</div>
+@endif
+
+{{ Form::model($preference, ['method'=> 'PATCH', 'route' => ['preferences.update', $preference->id]]) }}
+    {!! Form::inputFull('smoker_accepted', 'fa fa-fire') !!}
+    {!! Form::inputFull('pet_accepted', 'fa fa-paw') !!}
+    {!! Form::inputFull('radio_accepted', 'fa fa-music') !!}
+    {!! Form::inputFull('chat_accepted', 'fa fa-comments') !!}
+    {{ Form::submit(__('form.save'), ['class' => 'btn btn-primary']) }}
+{{ Form::close() }}
+
 @endsection
