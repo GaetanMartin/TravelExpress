@@ -29,7 +29,12 @@
                             <i class="fa fa-user" aria-hidden="true"></i> {{ Auth::user()->getName() }} <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{url('/preferences')}}">@lang('layouts.nav_menu_preferences')</a></li>
+                            <li>
+                                <a href="{{url('/preferences')}}"><i class="fa fa-check-square-o" aria-hidden="true"></i> @lang('layouts.nav_menu_preferences')</a>
+                            </li>
+                            <li>
+                                <a href="{{url('/cars')}}"><i class="fa fa-car" aria-hidden="true"></i> @lang('layouts.nav_menu_cars')</a>
+                            </li>
                             <li class="divider"></li>
                             <li><a href="{{url('/logout')}}"><i class="fa fa-power-off" aria-hidden="true"></i> @lang('layouts.nav_menu_logout')</a></li>
                         </ul>

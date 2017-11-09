@@ -2,34 +2,48 @@
 
 @section('content')
 
+
+{{ Form::macro('labelField', function($name, $message) {
+        return Form::label($name, $message, ['class' => 'form-check-label']); }) }}
+
+{{ Form::macro('inputField', function($name) {
+        return Form::checkbox($name); }) }}
+
+{{ Form::macro('labelAndInput', function($name, $labelMessage) {
+        return Form::inputField($name) . ' ' . Form::labelField($name, $labelMessage); }) }}
+
+{{ Form::macro('inputFull', function($name, $faIcon) {
+
+        $translateMsg = 'form.preference_' . $name;
+
+        $result = '<div class="form-check">';
+        $result .= '<i class="' . $faIcon . '"></i> ';
+        $result .= Form::labelAndInput($name, __($translateMsg));
+        $result .= '</div>';
+
+        return $result;
+}) }}
+
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-default">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="panel-heading">@lang('form.preference_edit')</div>
-
                 <div class="panel-body">
                     {{ Form::model($preference, ['method'=> 'PATCH', 'route' => ['preferences.update', $preference->id]]) }}
-                        <div class="form-check">
-                            <i class="fa fa-fire"></i>
-                            {{ Form::checkbox('smoker_accepted') }}
-                            {{ Form::label('smoker_accepted', __('form.preference_smoker_accepted'), ['class' => 'form-check-label']) }}
-                        </div>
-                        <div class="form-check">
-                            <i class="fa fa-paw"></i>
-                            {{ Form::checkbox('pet_accepted') }}
-                            {{ Form::label('pet_accepted', __('form.preference_pet_accepted'), ['class' => 'form-check-label']) }}
-                        </div>
-                        <div class="form-check">
-                            <i class="fa fa-music"></i>
-                            {{ Form::checkbox('radio_accepted') }}
-                            {{ Form::label('radio_accepted', __('form.preference_radio_accepted'), ['class' => 'form-check-label']) }}
-                        </div>
-                        <div class="form-check">
-                            <i class="fa fa-comments"></i>
-                            {{ Form::checkbox('chat_accepted') }}
-                            {{ Form::label('chat_accepted', __('form.preference_chat_accepted'), ['class' => 'form-check-label']) }}
-                        </div>
+                        {!! Form::inputFull('smoker_accepted', 'fa fa-fire') !!}
+                        {!! Form::inputFull('pet_accepted', 'fa fa-paw') !!}
+                        {!! Form::inputFull('radio_accepted', 'fa fa-music') !!}
+                        {!! Form::inputFull('chat_accepted', 'fa fa-comments') !!}
                         {{ Form::submit(__('form.save'), ['class' => 'btn btn-primary']) }}
                     {{ Form::close() }}
                 </div>

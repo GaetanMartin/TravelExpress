@@ -34,4 +34,8 @@ class User extends Authenticatable
     public function getPreference() {
         return Preference::where('user_id', $this->id)->firstOrFail();
     }
+
+    public function getCar() {
+        return Car::where('user_id', $this->id)->first();
+    }
 }

@@ -26,7 +26,14 @@ class DatabaseSeeder extends Seeder
         	'user_id' => $id,
         	'smoker_accepted' => 1,
         	'pet_accepted' => 1,
-        ]);        
+        ]); 
+
+        DB::table('cars')->insert([
+            'user_id' => $id,
+            'model' => "Zafira",
+            'make' => "Opel",
+            'nb_seats' => 7,
+        ]);       
 
         DB::table('users')->insert([
             'first_name' => "Adrien",
@@ -41,6 +48,13 @@ class DatabaseSeeder extends Seeder
         	'user_id' => $id,
         	'chat_accepted' => 1,
         	'radio_accepted' => 1,
+        ]);
+
+        DB::table('cars')->insert([
+            'user_id' => $id,
+            'model' => "Aveo",
+            'make' => "Chevrolet",
+            'nb_seats' => 5,
         ]);
     }
 }

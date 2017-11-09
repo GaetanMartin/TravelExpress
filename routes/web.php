@@ -39,14 +39,14 @@ Route::group(
 	 */
 	Route::group(['middleware' => 'auth'], function()
 	{
+		// Preferences
 		Route::get('/users/{user}/preferences', 'TravelExpress\PreferencesController@indexUser');
 		Route::resource('/preferences', 'TravelExpress\PreferencesController');
+
+		// Cars
+		Route::get('/users/{user}/cars', 'TravelExpress\CarsController@indexUser');
+		Route::resource('/cars', 'TravelExpress\CarsController');
 	});
-
-
-
-	// Preferences
-	// Route::get('/preferences',['middleware' => 'auth', 'TravelExpress\PreferencesController@show'])->name('preferences');
 
 
 	// Travel Express specific routes

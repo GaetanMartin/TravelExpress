@@ -10,13 +10,22 @@ return [
     |
     */
 
-    'car' => 'car',
+    // Flash messages
     'flash_welcome' => 'Welcome back :name, you have been logged in. ',
     'flash_preferences_updated' => 'Preferences successfully updated! ',
     'flash_register_success' => 'You have been successfully registered. ',
+    'flash_car_updated' => 'Your car has been successfully updated! ',
 
     // Preferences
     'preferences' => 'Preferences',
     'preferences_edit' => 'Edit you preferences',
+
+
+    // Cars
+    'car' => 'car',
+    'cars_your_cars' => 'Your cars',
+    'cars_nb_seats' => ':nb_seats seats',
+    'cars_edit' => 'Edit you cars',
+    'cars_no_car_yet' => 'You don\'t have registered a car yet, click here! ',
 
 ];
