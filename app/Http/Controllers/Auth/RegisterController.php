@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/preferences/edit';
+    protected $redirectTo = '/home/';
 
     /**
      * Create a new controller instance.
@@ -75,7 +75,7 @@ class RegisterController extends Controller
 
         Preference::create([
             'user_id' => $user->id,
-        ]);        
+        ]);
 
         session()->flash('status_success', Lang::get('messages.flash_register_success'));
         return $user;

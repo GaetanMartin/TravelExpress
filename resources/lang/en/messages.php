@@ -23,9 +23,9 @@ return [
 
     // Cars
     'car' => 'car',
-    'cars_your_cars' => 'Your cars',
+    'cars_your_cars' => ':user\'s Vehicles',
     'cars_nb_seats' => ':nb_seats seats',
     'cars_edit' => 'Edit you cars',
-    'cars_no_car_yet' => 'You don\'t have registered a car yet, click here! ',
+    'cars_no_car_yet' => 'You have not registered a car yet, click here! ',
 
 ];

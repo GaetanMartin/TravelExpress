@@ -3,7 +3,7 @@
 @section('content')
 
 	<div class="well">
-		<h1>@lang('messages.cars_your_cars')</h1>
+		<h1>@lang('messages.cars_your_cars', ['user' => $user->getName()])</h1>
 
 		@if(empty($car))
 			<a href="{{ route('cars.create')}}">@lang('messages.cars_no_car_yet')</a>

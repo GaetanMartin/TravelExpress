@@ -11,5 +11,5 @@ class Preference extends Model
      */
     protected $table = 'preferences';
 
-    protected $guarded = ['user_id'];
+    // protected $guarded = ['user_id'];
 }
