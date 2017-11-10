@@ -13,4 +13,6 @@ class Ride extends Model
      * @var string
      */
     protected $table = 'rides';
+
+    protected $dates = ['start_time'];
 }
