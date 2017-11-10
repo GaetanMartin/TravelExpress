@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Model\Ride;
 
 class HomeController extends Controller
 {
@@ -23,7 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('pages.home');
+        $rides = Ride::select('start_time', 'price')->get();
+        return view('pages.home', compact('rides'));
     }
     public function contact()
     {

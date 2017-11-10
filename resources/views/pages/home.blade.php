@@ -6,7 +6,23 @@
 @endsection
 
 @section('content')
-   
+
+<table id="example">
+  <thead>
+  <tr>
+     <th>Depart</th>
+     <th>Price</th>
+  </tr>
+  </thead>
+  <tbody>
+  	@foreach ($rides as $ride)
+  		<tr>
+	     <td>{{$ride->start_time}}</td>
+	     <td>{{$ride->price}}</td>
+  		</tr>
+  	@endforeach
+  </tbody>
+</table>   
 
 @endsection
 
