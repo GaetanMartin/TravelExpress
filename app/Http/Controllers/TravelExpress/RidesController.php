@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Model\User;
 use App\Model\Ride;
 use App\Model\City;
+use App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
 use Carbon\Carbon;
@@ -38,7 +39,8 @@ class RidesController extends Controller
         // Fetch all the cities
         $cities = City::select('city', 'id')->get();
         $car = Auth::user()->getCar();
-        return View('pages.rides.create', compact('cities', 'car'));
+        $locale = App::getLocale();
+        return View('pages.rides.create', compact('cities', 'car', 'locale'));
     }
 
     /**
