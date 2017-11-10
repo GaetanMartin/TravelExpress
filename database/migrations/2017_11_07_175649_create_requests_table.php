@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRideTable extends Migration
+class CreateRequestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateRideTable extends Migration
      */
     public function up()
     {
-        Schema::create('ride', function (Blueprint $table) {
+        Schema::create('requests', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateRideTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ride');
+        Schema::dropIfExists('requests');
     }
 }

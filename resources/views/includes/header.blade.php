@@ -11,9 +11,10 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="{{ Route::is('home') ? 'active' : '' }}"><a href="{{url('/home')}}"><i class="fa fa-home" aria-hidden="true"></i> @lang('layouts.nav_menu_home')</a></li>
-                <li class="{{ Route::is('search') ? 'active' : '' }}"><a href="{{url('/trip/search')}}"><i class="fa fa-search" aria-hidden="true"></i> @lang('layouts.nav_menu_trip_search')</a></li>
-                <li class="{{ Route::is('trip') ? 'active' : '' }}"><a href="{{url('/trip/new')}}"><i class="fa fa-plus-circle" aria-hidden="true"></i> @lang('layouts.nav_menu_trip_new')</a></li>
+                <li class="{{ Route::is('home') ? 'active' : '' }}"><a href="{{ route('home')}}"><i class="fa fa-home" aria-hidden="true"></i> @lang('layouts.nav_menu_home')</a></li>
+                <li class="{{ Route::is('search') ? 'active' : '' }}"><a href="{{route('rides.search')}}"><i class="fa fa-search" aria-hidden="true"></i> @lang('layouts.nav_menu_trip_search')</a></li>
+                <li class="{{ Route::is('rides') ? 'active' : '' }}"><a href="{{ route('rides.create')}}"><i class="fa fa-plus-circle" aria-hidden="true"></i> @lang('layouts.nav_menu_trip_new')</a></li>
+
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="{{ Route::is('contact') ? 'active' : '' }}"><a href="{{url('contact')}}"><i class="fa fa-envelope-o" aria-hidden="true"></i> @lang('layouts.nav_menu_contact')</a></li>

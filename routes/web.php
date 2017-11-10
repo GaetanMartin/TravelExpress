@@ -34,6 +34,9 @@ Route::group(
 		return redirect('home');
 	});
 
+	// Ride search
+	Route::get('/rides/search', 'TravelExpress\RidesController@search')->name('rides.search');
+
     /**
 	 * Routes where the user needs to be authentified
 	 */
@@ -46,9 +49,10 @@ Route::group(
 		// Cars
 		Route::get('/users/{user}/cars', 'TravelExpress\CarsController@indexUser');
 		Route::resource('/cars', 'TravelExpress\CarsController');
+
+		// Rides
+		Route::resource('/rides', 'TravelExpress\RidesController');
+
 	});
 
-
-	// Travel Express specific routes
-	Route::get('/trip', 'TravelExpress\CarsController@store');
 });

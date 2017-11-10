@@ -29,4 +29,8 @@ class Car extends Model
         'make',
         'nb_seats',
     ];
+
+    public function getName() {
+        return $this->make . ' ' . $this->model;
+    }
 }
