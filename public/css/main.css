@@ -2,3 +2,8 @@ body {
 	/* Needed to prevent the nav bar to overtop the body content */
   	padding-top: 70px;
 }
+
+.table_one_line {
+	 white-space: nowrap; 
+	 overflow: hidden;
+}

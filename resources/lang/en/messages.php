@@ -19,6 +19,19 @@ return [
     'flash_ride_created' => 'Your ride has been successfully registered',
     'flash_error_same_cities' => 'Cities should be different',
 
+    // Home page
+    'h1_latest_rides' => 'Latest rides',
+
+    'th_action' => 'Action',
+    'th_start_time' => 'Depart',
+    'th_source_city' => 'From',
+    'th_dest_city' => 'To',
+    'th_price' => 'Price',
+    'th_nb_seats' => 'Seats',
+    'th_luggage_size' => 'Luggage',
+    'th_preferences' => 'Preferences',
+
+
     // Preferences
     'preferences' => 'Preferences',
     'preferences_edit' => 'Edit you preferences',
