@@ -38,9 +38,10 @@ class RidesController extends Controller
     {
         // Fetch all the cities
         $cities = City::select('city', 'id')->get();
+        $luggage_sizes = Ride::getPossibleEnumValues('luggage_size');
         $car = Auth::user()->getCar();
         $locale = App::getLocale();
-        return View('pages.rides.create', compact('cities', 'car', 'locale'));
+        return View('pages.rides.create', compact('cities', 'luggage_sizes', 'car', 'locale'));
     }
 
     /**
@@ -65,19 +66,19 @@ class RidesController extends Controller
                 'dest_city' => 'required|integer',
                 'nb_seats_offered' => 'required|min:1|max:'.$nbSeatsAvailable,
                 'price' => 'required|numeric',
-                'luggage_size' => 'required|integer|min:1|max:3',
+                'luggage_size' => 'required',
             ]);
 
         $ride = new Ride();
         $ride->car_id = Auth::user()->getCar()->id;
         $ride->fill($request->only(['nb_seats_offered', 'price', 'luggage_size']));
 
-        $ride->start_time = Carbon::createFromFormat('d/m/Y H:m', $request->input('start_time'))->toDateTimeString();
+        $ride->start_time = Carbon::createFromFormat('d/m/Y H:i', $request->input('start_time'))->toDateTimeString();
         $ride->source_city_id = $request->input('source_city');
         $ride->dest_city_id = $request->input('dest_city');
         $ride->save();
 
-        $request->session()->flash('status_success', Lang::get('messages.flash_car_created'));
+        $request->session()->flash('status_success', Lang::get('messages.flash_ride_created'));
         return redirect()->route('home');
 
     }

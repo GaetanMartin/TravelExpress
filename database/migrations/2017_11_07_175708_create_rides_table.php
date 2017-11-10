@@ -32,7 +32,7 @@ class CreateRidesTable extends Migration
             
             $table->decimal('price')->unsigned();
             
-            $table->integer('luggage_size')->unsigned();
+            $table->enum('luggage_size', ['messages.small', 'messages.medium', 'messages.large']);
 
             $table->timestamps();
         });

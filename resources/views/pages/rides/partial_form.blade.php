@@ -59,7 +59,7 @@
 <div class="form-group{{ $errors->has('price') ? ' has-error' : '' }}">
     {{ Form::labelField('price', __('form.ride_label_price')) }}
     <div class="col-md-6">
-        {{ Form::number('price', null, ['class' => 'form-control', 'step="any" required autofocus min=0']) }}
+        {{ Form::number('price', null, ['class' => 'form-control', 'step="any" required autofocus value=5 min=0']) }}
         {!! Form::inputError('price', $errors) !!}
     </div>
 </div>
@@ -69,9 +69,9 @@
     {{ Form::labelField('luggage_size', __('form.ride_label_luggage_size')) }}
     <div class="col-md-6">
         <select id="luggage_size" name="luggage_size" class="form-control" data-live-search="true">
-            <option value="1">@lang('form.luggage_size_small')</option>
-            <option value="2">@lang('form.luggage_size_medium')</option>
-            <option value="3">@lang('form.luggage_size_large')</option>
+            @foreach ($luggage_sizes as $size)
+                <option value="{{$size}}">@lang($size)</option>
+            @endforeach
         </select>
     </div>
 </div>
@@ -108,5 +108,9 @@
         $('.datetimepicker input').click(function(event){
            $('.datetimepicker ').data("DateTimePicker").show();
         });
+
+        document.getElementById("source_city").selectedIndex = 1254; // Chicoutimi
+        document.getElementById("dest_city").selectedIndex = 1373; // Montreal
+        document.getElementById("luggage_size").selectedIndex = 1; // Montreal
     </script>
 @endsection

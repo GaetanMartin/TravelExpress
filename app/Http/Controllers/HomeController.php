@@ -24,7 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $rides = Ride::select('start_time', 'price')->get();
+        // Select last 1000 rides
+        $rides = Ride::select('start_time', 'price')->orderBy('created_at', 'desc')->take(1000)->get();
         return view('pages.home', compact('rides'));
     }
     public function contact()

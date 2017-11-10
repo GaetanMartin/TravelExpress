@@ -27,9 +27,4 @@ return [
 	'ride_label_price' => 'Price',
 	'ride_label_luggage_size' => 'Luggage size',
 
-	// Luggages
-    'luggage_size_small' => 'Small',
-    'luggage_size_medium' => 'Medium',
-    'luggage_size_large' => 'Large',
-
 ];
