@@ -57,6 +57,7 @@ Route::group(
 		Route::get('/bookings/create/{rid}', 'TravelExpress\BookingsController@create')->name('bookings.create');
 		Route::post('/bookings/store', 'TravelExpress\BookingsController@store')->name('bookings.store');
 		Route::get('/bookings/index', 'TravelExpress\BookingsController@index')->name('bookings.index');
+		Route::get('/bookings/show/{bid}', 'TravelExpress\BookingsController@show')->name('bookings.show');
 	});
 
 });

@@ -11,6 +11,8 @@
 
     <div id="main" class="row">
 
+        @include('includes.flash_messages')
+
         <!-- main content -->
         <div id="content" class="col-md-9">
             @yield('content')

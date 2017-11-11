@@ -17,6 +17,7 @@ return [
     'flash_car_updated' => 'Your car has been successfully updated! ',
     'flash_car_created' => 'Your car has been successfully registered! ',
     'flash_ride_created' => 'Your ride has been successfully registered',
+    'flash_booking_created' => 'Your booking has been successfully registered',
     'flash_error_same_cities' => 'Cities should be different',
 
     // Home page
@@ -55,5 +56,9 @@ return [
 
     // Rides
     'rides_nb_seats_remaining' => 'Number of seats remaining',
+
+    // Bookings
+    'bookings' => 'Bookings',
+    'your_bookings' => 'Your Bookings',
 
 ];

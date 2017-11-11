@@ -24,7 +24,8 @@ class BookingsController extends Controller
      */
     public function index()
     {
-        return redirect()->route('home');
+        $bookings = Booking::where('requester_id', Auth::user()->id)->get();
+        return View('pages.bookings.index', compact('bookings'));
     }
 
     /**
@@ -63,7 +64,7 @@ class BookingsController extends Controller
 
         $booking->save();
 
-        $request->session()->flash('status_success', Lang::get('messages.flash_car_created'));
+        $request->session()->flash('status_success', Lang::get('messages.flash_booking_created'));
 
         return redirect()->route('bookings.index');
     }
@@ -76,6 +77,7 @@ class BookingsController extends Controller
      */
     public function show($id)
     {
+        $booking = Booking::findOrFail($id);
         return View('pages.bookings.show', compact('booking'));
     }
 
