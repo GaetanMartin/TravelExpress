@@ -49,4 +49,8 @@ return [
     'medium' => 'Medium',
     'large' => 'Large',
 
+    // Other
+    'book' => 'Book',
+    'ride' => 'Ride',
+
 ];
