@@ -17,5 +17,8 @@ class DatabaseSeeder extends Seeder
         $path = 'database/import/cities.sql';
         DB::unprepared(file_get_contents($path));
         $this->command->info('Cities table seeded!');
+
+        // Call this after all foreign keys created
+        $this->call(RidesTableSeeder::class);
     }
 }
