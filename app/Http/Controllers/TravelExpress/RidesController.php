@@ -41,12 +41,18 @@ class RidesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         // Fetch all the cities
+        $car = Auth::user()->getCar();
+
+        if ($car == null) {
+            $request->session()->flash('status_danger', Lang::get('messages.flash_error_create_car'));
+            return redirect()->route('cars.create');         
+        }
+
         $cities = City::select('city', 'id')->get();
         $luggage_sizes = Ride::getPossibleEnumValues('luggage_size');
-        $car = Auth::user()->getCar();
         $locale = App::getLocale();
         return View('pages.rides.create', compact('cities', 'luggage_sizes', 'car', 'locale'));
     }
