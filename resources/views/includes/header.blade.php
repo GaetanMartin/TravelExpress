@@ -25,9 +25,13 @@
                     <li class="{{ Route::is('login') ? 'active' : '' }}"><a href="{{url('/login')}}"><i class="fa fa-user" aria-hidden="true"></i> @lang('layouts.nav_menu_login')</a></li>
             	@else
             		{{-- Logged In --}}
+
+                    <li>
+                        <a href="#" class=" {{($nbNotifications = Auth::user()->getNbNotifications()) == 0 ? '' : 'badge_notif'}}" data-badge="{{ Auth::user()->getNbNotifications() }}"><i class="fa fa-bell" aria-hidden="true"></i></a>
+                    </li>
+
                     <li class="dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">
-                            <i class="fa fa-user" aria-hidden="true"></i> {{ Auth::user()->getName() }} <b class="caret"></b>
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle"> {{ Auth::user()->getName() }} <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
                             <li>

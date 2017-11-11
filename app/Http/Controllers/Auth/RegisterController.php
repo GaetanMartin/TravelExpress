@@ -73,9 +73,9 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
 
-        Preference::create([
-            'user_id' => $user->id,
-        ]);
+        $p = new Preference(0, 0, 0, 0);
+        $p->user_id = $user->id;
+        $p->save();
 
         session()->flash('status_success', Lang::get('messages.flash_register_success'));
         return $user;

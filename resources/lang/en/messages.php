@@ -60,5 +60,9 @@ return [
     // Bookings
     'bookings' => 'Bookings',
     'your_bookings' => 'Your Bookings',
+    'messages.pending' => 'pending',
+    'messages.accepted' => 'accepted',
+    'messages.denied' => 'denied',
+    'messages.confirmed' => 'confirmed',
 
 ];
