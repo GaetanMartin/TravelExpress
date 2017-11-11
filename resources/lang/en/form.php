@@ -27,4 +27,8 @@ return [
 	'ride_label_price' => 'Price',
 	'ride_label_luggage_size' => 'Luggage size',
 
+	// Bookings
+	'booking_create' => 'Book a ride',
+	'label_nb_seats_booked' => 'Number of seats to book',
+
 ];

@@ -53,4 +53,7 @@ return [
     'book' => 'Book',
     'ride' => 'Ride',
 
+    // Rides
+    'rides_nb_seats_remaining' => 'Number of seats remaining',
+
 ];

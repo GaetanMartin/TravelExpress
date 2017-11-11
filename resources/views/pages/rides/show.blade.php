@@ -22,7 +22,7 @@
 		<br>
 
 		<div class="container">
-			<a href="{{ route('rides.create', $ride->id) }}" class="btn btn-info" role="button"><i class="fa fa-shopping-cart" aria-hidden="true"></i> @lang('messages.book')</a>
+			<a href="{{ route('bookings.create', ['id' => $ride->id]) }}" class="btn btn-info" role="button"><i class="fa fa-shopping-cart" aria-hidden="true"></i> @lang('messages.book')</a>
 		</div>
 
 		

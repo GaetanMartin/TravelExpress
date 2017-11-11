@@ -53,6 +53,10 @@ Route::group(
 		// Rides
 		Route::resource('/rides', 'TravelExpress\RidesController');
 
+		// Bookings
+		Route::get('/bookings/create/{rid}', 'TravelExpress\BookingsController@create')->name('bookings.create');
+		Route::post('/bookings/store', 'TravelExpress\BookingsController@store')->name('bookings.store');
+		Route::get('/bookings/index', 'TravelExpress\BookingsController@index')->name('bookings.index');
 	});
 
 });

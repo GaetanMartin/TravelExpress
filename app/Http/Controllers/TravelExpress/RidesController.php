@@ -25,6 +25,12 @@ class RidesController extends Controller
         return redirect()->route('home');
     }
 
+    
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         return redirect()->route('home');
@@ -92,15 +98,7 @@ class RidesController extends Controller
      */
     public function show($id)
     {
-        $ride = Ride::select('start_time', 'price', 'source_city.city as source_city', 
-            'dest_city.city as dest_city', 'preferences.*', 'rides.nb_seats_offered', 
-            'rides.luggage_size', 'rides.id')
-            ->join('cities as source_city', 'rides.source_city_id', 'source_city.id')
-            ->join('cities as dest_city', 'rides.dest_city_id', 'dest_city.id')
-            ->join('cars', 'rides.car_id', 'cars.id')
-            ->join('users', 'cars.user_id', 'users.id')
-            ->join('preferences', 'preferences.user_id', 'users.id')
-            ->findOrFail($id);
+        $ride = Ride::findWithDetail($id);
 
         $ride->preference = new Preference($ride->smoker_accepted, $ride->pet_accepted, $ride->radio_accepted, $ride->chat_accepted);
 
