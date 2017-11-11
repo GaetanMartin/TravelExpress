@@ -15,6 +15,7 @@ return [
     'website_name' => 'Travel Express',
     'nav_menu_home' => 'Home',
     'nav_menu_trip_search' => 'Search for a trip',
+    'nav_menu_bookings' => 'My Bookings',
     'nav_menu_trip_new' => 'Share your car',
     'nav_menu_login' => 'Log in',
     'nav_menu_register' => 'Join us',

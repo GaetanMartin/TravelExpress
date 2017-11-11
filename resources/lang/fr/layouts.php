@@ -16,6 +16,7 @@ return [
     'nav_menu_home' => 'Accueil',
     'nav_menu_trip_search' => 'Rechercher un trajet',
     'nav_menu_trip_new' => 'Proposer un trajet',
+    'nav_menu_bookings' => 'Mes réservations',
     'nav_menu_login' => 'Se connecter',
     'nav_menu_register' => 'Inscription',
     'nav_menu_logout' => 'Déconnexion',

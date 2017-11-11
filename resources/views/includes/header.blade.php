@@ -15,6 +15,7 @@
                 <li class="{{ Route::is('rides.search') ? 'active' : '' }}"><a href="{{route('rides.search')}}"><i class="fa fa-search" aria-hidden="true"></i> @lang('layouts.nav_menu_trip_search')</a></li>
                 <li class="{{ Route::is('rides.create') ? 'active' : '' }}"><a href="{{ route('rides.create')}}"><i class="fa fa-plus-circle" aria-hidden="true"></i> @lang('layouts.nav_menu_trip_new')</a></li>
 
+
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="{{ Route::is('contact') ? 'active' : '' }}"><a href="{{url('contact')}}"><i class="fa fa-envelope-o" aria-hidden="true"></i> @lang('layouts.nav_menu_contact')</a></li>
@@ -40,7 +41,10 @@
                             <li>
                                 <a href="{{url('/cars')}}"><i class="fa fa-car" aria-hidden="true"></i> @lang('layouts.nav_menu_cars')</a>
                             </li>
+                            <li>
+                                <a href="{{ route('bookings.index')}}"><i class="fa fa-book fa-fw" aria-hidden="true"></i> @lang('layouts.nav_menu_bookings')</a>                            </li>
                             <li class="divider"></li>
+
                             <li><a href="{{url('/logout')}}"><i class="fa fa-power-off" aria-hidden="true"></i> @lang('layouts.nav_menu_logout')</a></li>
                         </ul>
                     </li>
