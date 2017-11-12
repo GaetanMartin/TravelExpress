@@ -20,6 +20,7 @@ return [
 
 	// Rides edit & create & search
 	'ride_create' => 'Create a new ride',
+	'ride_update' => 'Update a ride',
 	'ride_label_start_time' => 'Depart',
 	'ride_label_source_city' => 'From',
 	'ride_label_dest_city' => 'To',

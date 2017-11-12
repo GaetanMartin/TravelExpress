@@ -147,6 +147,86 @@ class RidesController extends Controller
      */
     public function store(Request $request)
     {
+        $this->check($request);
+
+        $id = $this->save(new Ride(), $request)->id;
+
+        $request->session()->flash('status_success', Lang::get('messages.flash_ride_created'));
+        return redirect()->route('rides.show', $id);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $ride = Ride::findWithDetail($id);
+
+        $ride->preference = new Preference($ride->smoker_accepted, $ride->pet_accepted, $ride->radio_accepted, $ride->chat_accepted);
+
+        // Indicates if the current ride is the one of the connected user
+        $rideOfConnectedUser = ((Auth::user()->getCar()->id) == $ride->car_id);
+
+        return View('pages.rides.show', compact('ride', 'rideOfConnectedUser'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $user = Auth::user();
+        $car = $user->getCar();
+        $ride = Ride::where('car_id', $car->id)->findOrFail($id);
+        $cities = City::select('city', 'id')->get();
+        $luggage_sizes = Ride::getPossibleEnumValues('luggage_size');
+        $locale = App::getLocale();
+        return View('pages.rides.edit', compact('ride', 'cities', 'luggage_sizes', 'car', 'locale'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $this->check($request);
+        $car_id = Auth::user()->getCar()->id;
+        $ride = Ride::where('car_id', $car_id)->findOrFail($id);
+        $this->save($ride, $request);
+
+        $request->session()->flash('status_success', Lang::get('messages.flash_ride_updated'));
+
+        return redirect()->route('rides.show', $id);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request, $id)
+    {
+
+        $car_id = Auth::user()->getCar()->id;
+        $ride = Ride::where('car_id', $car_id)->findOrFail($id);
+        $ride->delete();
+
+        $request->session()->flash('status_success', Lang::get('messages.flash_ride_destroyed'));
+        return redirect()->route('home');
+    }
+
+    private function check(Request $request) {
         // Minus the driver
         $nbSeatsAvailable = Auth::user()->getCar()->nb_seats - 1;
 
@@ -163,8 +243,9 @@ class RidesController extends Controller
                 'price' => 'required|numeric',
                 'luggage_size' => 'required',
             ]);
+    }
 
-        $ride = new Ride();
+    private function save(Ride $ride, Request $request) {
         $ride->car_id = Auth::user()->getCar()->id;
         $ride->fill($request->only(['nb_seats_offered', 'price', 'luggage_size']));
 
@@ -172,58 +253,6 @@ class RidesController extends Controller
         $ride->source_city_id = $request->input('source_city');
         $ride->dest_city_id = $request->input('dest_city');
         $ride->save();
-
-        $request->session()->flash('status_success', Lang::get('messages.flash_ride_created'));
-        return redirect()->route('home');
-
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $ride = Ride::findWithDetail($id);
-
-        $ride->preference = new Preference($ride->smoker_accepted, $ride->pet_accepted, $ride->radio_accepted, $ride->chat_accepted);
-
-        return View('pages.rides.show', compact('ride'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return $ride;
     }
 }

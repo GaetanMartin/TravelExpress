@@ -20,6 +20,8 @@ return [
     'flash_booking_created' => 'Your booking has been successfully registered',
     'flash_error_same_cities' => 'Cities should be different',
     'flash_error_create_car' => 'You must have a car to share a ride',
+    'flash_ride_destroyed' => 'The ride has been successfully deleted',
+    'flash_ride_updated' => 'The ride has been successfully updated',
 
     // Home page
     'h1_latest_rides' => 'Latest rides',
@@ -55,6 +57,9 @@ return [
     'book' => 'Book',
     'ride' => 'Ride',
     'search_result' => 'Search results',
+    'update' => 'Update',
+    'edit' => 'Edit',
+    'delete' => 'Delete',
 
     // Rides
     'rides_nb_seats_remaining' => 'Number of seats remaining',

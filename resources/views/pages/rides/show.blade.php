@@ -21,9 +21,28 @@
 
 		<br>
 
+
 		<div class="container">
-			<a href="{{ route('bookings.create', ['id' => $ride->id]) }}" class="btn btn-info" role="button"><i class="fa fa-shopping-cart" aria-hidden="true"></i> @lang('messages.book')</a>
+			<div class="btn-group">
+			@if($rideOfConnectedUser)
+				<div class="btn-group">
+					<a href="{{ route('rides.edit', ['id' => $ride->id]) }}" class="btn btn-info" role="button"><i class="fa fa-pencil" aria-hidden="true"></i> @lang('messages.edit')</a>
+				</div>
+				<div class="btn-group">
+					{{ Form::open([ 'method'  => 'delete', 'route' => [ 'rides.destroy', $ride->id ], 'class' => '']) }}
+						<button type="submit" class="btn btn-danger">
+							<i class="fa fa-trash-o"></i> @lang('messages.delete')
+						</button>
+	                {{ Form::close() }}
+	            </div>
+			@else
+				<div class="btn-group">
+					<a href="{{ route('bookings.create', ['id' => $ride->id]) }}" class="btn btn-info" role="button"><i class="fa fa-shopping-cart" aria-hidden="true"></i> @lang('messages.book')</a>
+				</div>
+			@endif
+			</div>
 		</div>
+
 
 		
 	</div>

@@ -21,7 +21,7 @@ class CreateBookingsTable extends Migration
             $table->foreign('requester_id')->references('id')->on('users');
 
             $table->integer('ride_id')->unsigned();
-            $table->foreign('ride_id')->references('id')->on('rides');
+            $table->foreign('ride_id')->references('id')->on('rides')->onDelete('cascade');
 
             $table->integer('nb_seats_booked')->unsigned();
             
