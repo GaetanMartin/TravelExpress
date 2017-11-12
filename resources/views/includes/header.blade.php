@@ -12,7 +12,7 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="{{ Route::is('home') ? 'active' : '' }}"><a href="{{ route('home')}}"><i class="fa fa-home" aria-hidden="true"></i> @lang('layouts.nav_menu_home')</a></li>
-                <li class="{{ Route::is('rides.search') ? 'active' : '' }}"><a href="{{route('rides.search')}}"><i class="fa fa-search" aria-hidden="true"></i> @lang('layouts.nav_menu_trip_search')</a></li>
+                <li class="{{ Route::is('rides.search') || Route::is('rides.filter') ? 'active' : '' }}"><a href="{{route('rides.search')}}"><i class="fa fa-search" aria-hidden="true"></i> @lang('layouts.nav_menu_trip_search')</a></li>
                 <li class="{{ Route::is('rides.create') ? 'active' : '' }}"><a href="{{ route('rides.create')}}"><i class="fa fa-plus-circle" aria-hidden="true"></i> @lang('layouts.nav_menu_trip_new')</a></li>
 
 
