@@ -69,14 +69,6 @@
 </div>
 
 
-{{-- Submit --}}
-<div class="form-group">
-    <div class="col-md-6 col-md-offset-4">
-        {{ Form::submit(__('form.save'), ['class' => 'btn btn-primary']) }}
-    </div>
-</div>
-
-
 
 @section('scripts')
     {{-- Datetime picker --}}

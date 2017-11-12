@@ -149,10 +149,48 @@ class RidesController extends Controller
     {
         $this->check($request);
 
-        $id = $this->save(new Ride(), $request)->id;
+        $ride = $this->fillRide(new Ride(), $request);
+        $ride->save();
+        $date_init = $ride->start_time;
+        $id = $ride->id;
+
+        $nbRides = $this->manageFrequency($request, $date_init) + 1; // Plus init one
 
         $request->session()->flash('status_success', Lang::get('messages.flash_ride_created'));
-        return redirect()->route('rides.show', $id);
+        return redirect()->route('rides.index');
+    }
+
+    private function manageFrequency(Request $request, Carbon $date_init) {
+
+        $nbRides = 0;
+
+        if (!$request->has('frequency', 'frequency_value')) {
+            return 0;
+        }
+        $frequency = $request->input('frequency');
+        $frequency_value = min($request->input('frequency_value'), 12);
+
+        for ($i=0; $i < $frequency_value; $i++) {
+            $ride = $this->fillRide(new Ride(), $request);
+            switch ($frequency) {
+                case 'd':
+                    $date_init->addDay();
+                    break;
+                case 'w':
+                    $date_init->addWeek();
+                    break;
+                case 'm':
+                    $date_init->addMonth();
+                    break;
+                default: 
+                    return;
+            }
+            $ride->start_time = $date_init;
+            $ride->save();
+            $nbRides ++;
+        }
+
+        return $nbRides;
     }
 
     /**
@@ -202,7 +240,7 @@ class RidesController extends Controller
         $this->check($request);
         $car_id = Auth::user()->getCar()->id;
         $ride = Ride::where('car_id', $car_id)->findOrFail($id);
-        $this->save($ride, $request);
+        $this->fillRide($ride, $request)->save();
 
         $request->session()->flash('status_success', Lang::get('messages.flash_ride_updated'));
 
@@ -245,14 +283,14 @@ class RidesController extends Controller
             ]);
     }
 
-    private function save(Ride $ride, Request $request) {
+    private function fillRide(Ride $ride, Request $request) {
         $ride->car_id = Auth::user()->getCar()->id;
         $ride->fill($request->only(['nb_seats_offered', 'price', 'luggage_size']));
 
         $ride->start_time = Carbon::createFromFormat('d/m/Y H:i', $request->input('start_time'))->toDateTimeString();
         $ride->source_city_id = $request->input('source_city');
         $ride->dest_city_id = $request->input('dest_city');
-        $ride->save();
+        
         return $ride;
     }
 }

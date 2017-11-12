@@ -33,6 +33,12 @@ return [
 	'ride_label_start_time_from' => 'Depart after',
 	'ride_label_start_time_to' => 'Depart before',
 	'ride_label_nb_seats_offered_minimal' => 'Minimal number of seats',
+	'ride_frequency' => 'Repeat every ',
+	'ride_repeat' => 'This trip is frequent? ',
+	'day' => 'Day(s)',
+	'day' => 'Day(s)',
+	'week' => 'Week(s)',
+	'month' => 'Month(s)',
 
 	// Bookings
 	'booking_create' => 'Book a ride',

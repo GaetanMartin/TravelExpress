@@ -4,6 +4,14 @@
 
 @section('form')
     {{ Form::model($ride, ['class' => 'form-horizontal', 'method'=> 'PATCH', 'route' => ['rides.update', $ride->id]]) }}
-        @include('pages.rides.partial_form')        
+        @include('pages.rides.partial_form')
+
+        {{-- Submit --}}
+        <div class="form-group">
+            <div class="col-md-6 col-md-offset-4">
+                {{ Form::submit(__('form.save'), ['class' => 'btn btn-primary']) }}
+            </div>
+        </div>
+
     {{ Form::close() }}
 @endsection

@@ -16,7 +16,7 @@ return [
     'flash_register_success' => 'You have been successfully registered. ',
     'flash_car_updated' => 'Your car has been successfully updated! ',
     'flash_car_created' => 'Your car has been successfully registered! ',
-    'flash_ride_created' => 'Your ride has been successfully registered',
+    'flash_ride_created' => 'Your ride(s) has been successfully registered',
     'flash_booking_created' => 'Your booking has been successfully registered',
     'flash_error_same_cities' => 'Cities should be different',
     'flash_error_create_car' => 'You must have a car to share a ride',
