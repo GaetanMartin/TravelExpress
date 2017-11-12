@@ -16,13 +16,95 @@ use Carbon\Carbon;
 class RidesController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display the form advanced search
      *
      * @return \Illuminate\Http\Response
      */
     public function search()
     {
-        return redirect()->route('home');
+        $luggage_sizes = Ride::getPossibleEnumValues('luggage_size');
+        $locale = App::getLocale();
+        $cities = City::select('city', 'id')->get();
+        return View('pages.rides.search', compact('luggage_sizes', 'locale', 'cities'));
+    }
+
+    /**
+     * Search and display the results
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function filter(Request $request)
+    {
+
+        $this->validate($request, [
+                'source_city' => 'required|integer',
+                'dest_city' => 'required|integer',
+                'nb_seats_offered' => 'required|min:1|max:10',
+            ]);
+
+        $rq = Ride::getDetailQuery();
+
+        if ($request->has('source_city')) {
+            $rq->where('source_city_id', $request->input('source_city'));
+        }
+
+        if ($request->has('dest_city')) {
+            $rq->where('dest_city_id', $request->input('dest_city'));
+        }
+
+        if ($request->has('nb_seats_offered')) {
+            $rq->where('nb_seats_offered', '>=' , $request->input('nb_seats_offered'));
+        }
+
+        if ($request->has('price_range')) {        
+            if (strpos($request->input('price_range'), ',')) {
+                $price_range = explode(',', $request->input('price_range'));
+                sort($price_range);
+                $price_min = $price_range[0];
+                $price_max = $price_range[1];
+                $rq->where('price', '>=', $price_min);
+                $rq->where('price', '<=', $price_max);
+            }
+        }
+
+
+        if ($request->has('nb_seats_offered')) {
+            $rq->where('nb_seats_offered', '>=', $request->input('nb_seats_offered'));
+        }
+
+        if ($request->has('start_time_from')) {
+            $start_time_from = Carbon::createFromFormat('d/m/Y H:i', $request->input('start_time_from'))->toDateTimeString();
+            $rq->whereDate('start_time', '>=', $start_time_from);
+        }
+
+        if ($request->has('start_time_to')) {
+            $start_time_to = Carbon::createFromFormat('d/m/Y H:i', $request->input('start_time_to'))->toDateTimeString();
+            $rq->whereDate('start_time', '<=', $start_time_to);
+        }
+
+        if ($request->has('luggage_size')) {
+            $minSize = $request->input('luggage_size');
+            $acceptable_sizes = ['messages.small'];
+            if ($minSize == 'messages.medium') {
+                $acceptable_sizes[] = 'messages.medium';
+            }
+            if ($minSize == 'messages.large') {
+                $acceptable_sizes[] = 'messages.medium';
+                $acceptable_sizes[] = 'messages.large';
+            }
+            $rq->whereIn('luggage_size', array($acceptable_sizes));
+        }
+
+        $rides = $rq->get();
+
+        // Set preferences
+        foreach ($rides as $ride) {
+            $ride->preference = new Preference($ride->smoker_accepted, $ride->pet_accepted, $ride->radio_accepted, $ride->chat_accepted);
+        }
+
+        $locale = App::getLocale();
+
+        return view('pages.rides.search_result', compact('rides', 'locale'));
     }
 
     
@@ -43,7 +125,6 @@ class RidesController extends Controller
      */
     public function create(Request $request)
     {
-        // Fetch all the cities
         $car = Auth::user()->getCar();
 
         if ($car == null) {
@@ -51,6 +132,7 @@ class RidesController extends Controller
             return redirect()->route('cars.create');         
         }
 
+        // Fetch all the cities
         $cities = City::select('city', 'id')->get();
         $luggage_sizes = Ride::getPossibleEnumValues('luggage_size');
         $locale = App::getLocale();

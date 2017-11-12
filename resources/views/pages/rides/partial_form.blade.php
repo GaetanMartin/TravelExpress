@@ -68,7 +68,7 @@
 <div class="form-group{{ $errors->has('luggage_size') ? ' has-error' : '' }}">
     {{ Form::labelField('luggage_size', __('form.ride_label_luggage_size')) }}
     <div class="col-md-6">
-        <select id="luggage_size" name="luggage_size" class="form-control" data-live-search="true">
+        <select id="luggage_size" name="luggage_size" required class="form-control" data-live-search="true">
             @foreach ($luggage_sizes as $size)
                 <option value="{{$size}}">@lang($size)</option>
             @endforeach

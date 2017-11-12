@@ -36,6 +36,7 @@ Route::group(
 
 	// Ride search
 	Route::get('/rides/search', 'TravelExpress\RidesController@search')->name('rides.search');
+	Route::post('/rides/search', 'TravelExpress\RidesController@filter')->name('rides.filter');
 
     /**
 	 * Routes where the user needs to be authentified

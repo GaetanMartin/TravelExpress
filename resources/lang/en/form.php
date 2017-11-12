@@ -18,7 +18,7 @@ return [
 	'cars_label_model' => 'Vehicle model',
 	'cars_label_nb_seats' => 'Total number of seats',
 
-	// Rides edit & create
+	// Rides edit & create & search
 	'ride_create' => 'Create a new ride',
 	'ride_label_start_time' => 'Depart',
 	'ride_label_source_city' => 'From',
@@ -26,6 +26,12 @@ return [
 	'ride_label_nb_seats_offered' => 'Seats available',
 	'ride_label_price' => 'Price',
 	'ride_label_luggage_size' => 'Luggage size',
+	'ride_search' => 'Search for a ride', 
+	'ride_label_luggage_minimal_size' => 'Minimal luggage size',
+	'ride_label_price_range' => 'Price range',
+	'ride_label_start_time_from' => 'Depart after',
+	'ride_label_start_time_to' => 'Depart before',
+	'ride_label_nb_seats_offered_minimal' => 'Minimal number of seats',
 
 	// Bookings
 	'booking_create' => 'Book a ride',

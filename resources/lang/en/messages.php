@@ -54,6 +54,7 @@ return [
     // Other
     'book' => 'Book',
     'ride' => 'Ride',
+    'search_result' => 'Search results',
 
     // Rides
     'rides_nb_seats_remaining' => 'Number of seats remaining',
