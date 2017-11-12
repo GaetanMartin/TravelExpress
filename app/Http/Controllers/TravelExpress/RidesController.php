@@ -133,7 +133,7 @@ class RidesController extends Controller
         }
 
         // Fetch all the cities
-        $cities = City::select('city', 'id')->get();
+        $cities = City::orderBy('city')->pluck('city', 'id');
         $luggage_sizes = Ride::getPossibleEnumValues('luggage_size');
         $locale = App::getLocale();
         return View('pages.rides.create', compact('cities', 'luggage_sizes', 'car', 'locale'));
@@ -184,7 +184,7 @@ class RidesController extends Controller
         $user = Auth::user();
         $car = $user->getCar();
         $ride = Ride::where('car_id', $car->id)->findOrFail($id);
-        $cities = City::select('city', 'id')->get();
+        $cities = City::orderBy('city')->pluck('city', 'id');
         $luggage_sizes = Ride::getPossibleEnumValues('luggage_size');
         $locale = App::getLocale();
         return View('pages.rides.edit', compact('ride', 'cities', 'luggage_sizes', 'car', 'locale'));
