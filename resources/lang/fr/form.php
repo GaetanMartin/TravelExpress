@@ -2,7 +2,7 @@
 
 return [
 
-	'save' => 'Save',
+	'save' => 'Sauvegarder',
 
 	// Preferences edit
 	'preference_edit' => 'Changer les préférences',
@@ -20,12 +20,24 @@ return [
 
 	// Rides edit & create
 	'ride_create' => 'Créer un nouveau trajet',
-	'ride_label_start_time' => 'Depart',
+    'ride_update' => 'Mettre un trajet à jour',
+    'ride_label_start_time' => 'Depart',
 	'ride_label_source_city' => 'De',
 	'ride_label_dest_city' => 'Vers',
 	'ride_label_nb_seats_offered' => 'Places disponibles',
 	'ride_label_price' => 'Prix',
 	'ride_label_luggage_size' => 'Taille de bagage',
+    'ride_search' => 'Rechercher un trajet',
+    'ride_label_luggage_minimal_size' => 'Taille de bagage minimale',
+    'ride_label_price_range' => 'Gamme de prix',
+    'ride_label_start_time_from' => 'Depart après',
+    'ride_label_start_time_to' => 'Depart avant',
+    'ride_label_nb_seats_offered_minimal' => 'Nombre de place minimal',
+    'ride_frequency' => 'A répéter tous les ',
+    'ride_repeat' => 'Ce voyage est fréquent? ',
+    'day' => 'Jour(s)',
+    'week' => 'Semaine(s)',
+    'month' => 'Mois',
 
 	// Bookings
 	'booking_create' => 'Réserver un trajet',

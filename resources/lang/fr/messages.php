@@ -20,6 +20,13 @@ return [
     'flash_booking_created' => 'Votre réservation a été prise en compte',
     'flash_error_same_cities' => 'Les villes doivent être différentes',
     'flash_error_create_car' => 'Vous devez avoir une voiture pour proposer un trajet',
+    'flash_ride_destroyed' => 'TLe trajet a été supprimé avec succès',
+    'flash_ride_updated' => 'Le trajet a été mis à jour avec succès',
+    'flash_booking_accepted' => 'La réservation a été acceptée! ',
+    'flash_not_enough_room_booking_denied' => 'Pas assez de places disponibles, la réservation a été refusée',
+    'flash_booking_accepted' => 'Réservation acceptée! En attente du paiement. ',
+    'flash_booking_denied' => 'Réservation refusée! ',
+    'flash_booking_paid' => 'Votre réservation a été confirmée! ',
 
     // Home page
     'h1_latest_rides' => 'Trajets récents',
@@ -54,6 +61,13 @@ return [
     // Other
     'book' => 'Réservation',
     'ride' => 'Trajet',
+    'search_result' => 'Résultat de la recherche',
+    'update' => 'Mettre à jour',
+    'edit' => 'Modifier',
+    'delete' => 'Supprimer',
+    'accept' => 'Accepter',
+    'deny' => 'Refuser',
+    'seats' => 'place(s)',
 
     // Rides
     'rides_nb_seats_remaining' => 'Nombre de places restantes',

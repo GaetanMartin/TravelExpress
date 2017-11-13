@@ -36,7 +36,6 @@ return [
 	'ride_frequency' => 'Repeat every ',
 	'ride_repeat' => 'This trip is frequent? ',
 	'day' => 'Day(s)',
-	'day' => 'Day(s)',
 	'week' => 'Week(s)',
 	'month' => 'Month(s)',
 
