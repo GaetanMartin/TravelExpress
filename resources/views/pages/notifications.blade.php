@@ -50,7 +50,7 @@
 		  					<br>
 							<div class="btn-group">
 								<div class="btn-group">
-									<a href="{{ route('bookings.pay', ['id' => $booking->id]) }}" class="btn btn-info" role="button"><i class="fa fa-check" aria-hidden="true"></i> @lang('messages.pay')</a>
+									<a href="{{ route('bookings.payment', ['id' => $booking->id]) }}" class="btn btn-info" role="button"><i class="fa fa-check" aria-hidden="true"></i> @lang('messages.pay')</a>
 								</div>
 								<div class="btn-group">
 									<a href="{{ route('bookings.cancel', ['id' => $booking->id]) }}" class="btn btn-danger" role="button"><i class="fa fa-times" aria-hidden="true"></i> @lang('messages.cancel')</a>

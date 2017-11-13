@@ -110,10 +110,25 @@ class BookingsController extends Controller
         return View('pages.bookings.show', compact('booking', 'ride'));
     }
 
+    /**
+     * Get : Display the payment form
+     */
+    public function payment(Request $request, $id) {
+        return View('pages.bookings.payment', compact('id'));
+    }
 
-    public function pay(Request $request, $id) {
+
+    /**  
+     * Post request : Validate the payment
+     */
+    public function pay(Request $request) {
+
+        $this->validate($request, [
+                'id' => 'required|integer',
+            ]);
+
+        $id = $request->input('id');
         $user_id = Auth::user()->id;
-
         $booking = Booking::where('requester_id', $user_id)->where('status', 'messages.accepted')->findOrFail($id);
         $booking->status = 'messages.confirmed';
         $booking->save();
