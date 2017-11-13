@@ -33,7 +33,7 @@ return [
     'ride_label_start_time_from' => 'Depart après',
     'ride_label_start_time_to' => 'Depart avant',
     'ride_label_nb_seats_offered_minimal' => 'Nombre de place minimal',
-    'ride_frequency' => 'A répéter tous les ',
+    'ride_frequency' => 'Répéter ',
     'ride_repeat' => 'Ce voyage est fréquent? ',
     'day' => 'Jour(s)',
     'week' => 'Semaine(s)',

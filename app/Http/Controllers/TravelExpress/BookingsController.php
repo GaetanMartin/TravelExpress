@@ -134,11 +134,8 @@ class BookingsController extends Controller
         return redirect()->route('notifications');
     }
 
-    private function getBookingSafely($id) {
-        $car = Auth::user()->getCar();
-        if ($car == null) {
-            return null;
-        }
-        return Booking::getVerifyingCar($id, $car->id);
+    private function getBookingSafely($id_booking) {
+        $user_id = Auth::user()->id;
+        return Booking::getPendingBookings($user_id, $id_booking);
     }
 }
