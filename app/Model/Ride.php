@@ -46,7 +46,8 @@ class Ride extends Model
 
         // Nb seats already booked
         $nbSeatsBooked = Booking::where('bookings.ride_id', $id)
-            ->where('bookings.status', 'messages.confirmed')
+            ->where('bookings.status', 'messages.accepted')
+            ->orWhere('bookings.status', 'messages.confirmed')
             ->sum('bookings.nb_seats_booked');
 
         return $nbSeatsOffered - $nbSeatsBooked;

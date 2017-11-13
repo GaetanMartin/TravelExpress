@@ -22,6 +22,11 @@ return [
     'flash_error_create_car' => 'You must have a car to share a ride',
     'flash_ride_destroyed' => 'The ride has been successfully deleted',
     'flash_ride_updated' => 'The ride has been successfully updated',
+    'flash_booking_accepted' => 'The booking has been accepted! ',
+    'flash_not_enough_room_booking_denied' => 'Not enough seats available, the booking has been denied',
+    'flash_booking_accepted' => 'Booking accepted! Waiting for payement. ',
+    'flash_booking_denied' => 'Booking denied! ',
+    'flash_booking_paid' => 'Your booking is confirmed! ',
 
     // Home page
     'h1_latest_rides' => 'Latest rides',
@@ -60,6 +65,9 @@ return [
     'update' => 'Update',
     'edit' => 'Edit',
     'delete' => 'Delete',
+    'accept' => 'Accept',
+    'deny' => 'Deny',
+    'seats' => 'seat(s)',
 
     // Rides
     'rides_nb_seats_remaining' => 'Number of seats remaining',

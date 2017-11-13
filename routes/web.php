@@ -29,7 +29,7 @@ Route::group(
 
 	// Home
 	Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/contact', 'Homecontroller@contact')->name('contact');
+    Route::get('/contact', 'HomeController@contact')->name('contact');
     Route::get('/', function(){
 		return redirect('home');
 	});
@@ -44,7 +44,7 @@ Route::group(
 	Route::group(['middleware' => 'auth'], function()
 	{
 		// Preferences
-		Route::get('/users/{user}/preferences', 'TravelExpress\PreferencesController@indexUser');
+		Route::get('/users/{user}/preferences', 'TravelExpress\PreferencesController@indexUser')->name('preferences_user');
 		Route::resource('/preferences', 'TravelExpress\PreferencesController');
 
 		// Cars
@@ -59,6 +59,12 @@ Route::group(
 		Route::post('/bookings/store', 'TravelExpress\BookingsController@store')->name('bookings.store');
 		Route::get('/bookings/index', 'TravelExpress\BookingsController@index')->name('bookings.index');
 		Route::get('/bookings/show/{bid}', 'TravelExpress\BookingsController@show')->name('bookings.show');
+		Route::get('bookings/accept/{bid}', 'TravelExpress\BookingsController@accept')->name('bookings.accept');
+		Route::get('bookings/deny/{bid}', 'TravelExpress\BookingsController@deny')->name('bookings.deny');
+		Route::any('bookings/pay/{bid}', 'TravelExpress\BookingsController@pay')->name('bookings.pay');
+
+		// Notifications
+		Route::get('/notifications', 'HomeController@notifications')->name('notifications');
 	});
 
 });

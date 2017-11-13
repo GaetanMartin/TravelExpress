@@ -28,7 +28,7 @@
             		{{-- Logged In --}}
 
                     <li>
-                        <a href="#" class=" {{($nbNotifications = Auth::user()->getNbNotifications()) == 0 ? '' : 'badge_notif'}}" data-badge="{{ Auth::user()->getNbNotifications() }}"><i class="fa fa-bell" aria-hidden="true"></i></a>
+                        <a href="{{ route('notifications') }}" class="{{ Route::is('notifications') ? 'active' : '' }} {{($nbNotifications = Auth::user()->getNbNotifications()) == 0 ? '' : 'badge_notif'}}" data-badge="{{ $nbNotifications }}"><i class="fa fa-bell" aria-hidden="true"></i></a>
                     </li>
 
                     <li class="dropdown">

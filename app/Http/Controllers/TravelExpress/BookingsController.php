@@ -60,8 +60,8 @@ class BookingsController extends Controller
         $booking = new Booking();
         $booking->requester_id = Auth::user()->id;
         $booking->status = 'messages.pending';
-        $booking->fill($request->only(['ride_id', 'nb_seats_booked']));
-
+        $booking->ride_id = $request->input('ride_id');
+        $booking->nb_seats_booked = $request->input('nb_seats_booked');
         $booking->save();
 
         $request->session()->flash('status_success', Lang::get('messages.flash_booking_created'));
@@ -78,40 +78,57 @@ class BookingsController extends Controller
     public function show($id)
     {
         $booking = Booking::findOrFail($id);
+        // TODO
         return View('pages.bookings.show', compact('booking'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+
+    public function pay(Request $request, $id) {
+        $user_id = Auth::user()->id;
+
+        $booking = Booking::where('requester_id', $user_id)->where('status', 'messages.accepted')->findOrFail($id);
+        $booking->status = 'messages.confirmed';
+        $booking->save();
+
+        $request->session()->flash('status_success', Lang::get('messages.flash_booking_paid'));
+        return redirect()->route('bookings.index');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+    public function accept(Request $request, $id) {
+
+        if (null == ($booking = $this->getBookingSafely($id))) {
+            return redirect()->route('home');
+        }
+
+        // Check available seats
+        if (Ride::getNbSeatsAvailable($booking->ride_id) < $booking->nb_seats_booked) {
+            $booking->status = 'messages.denied';
+            $request->session()->flash('status_danger', Lang::get('messages.flash_not_enough_room_booking_denied'));
+        } else {
+            $booking->status = 'messages.accepted';
+            $request->session()->flash('status_success', Lang::get('messages.flash_booking_accepted'));
+        }
+
+        $booking->save();
+        return redirect()->route('notifications');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    public function deny(Request $request, $id) {
+        if (null == ($booking = $this->getBookingSafely($id))) {
+            return redirect()->route('home');
+        }
+        $booking->status = 'messages.denied';
+        $booking->save();
+
+        $request->session()->flash('status_success', Lang::get('messages.flash_booking_denied'));
+        return redirect()->route('notifications');
+    }
+
+    private function getBookingSafely($id) {
+        $car = Auth::user()->getCar();
+        if ($car == null) {
+            return null;
+        }
+        return Booking::getVerifyingCar($id, $car->id);
     }
 }

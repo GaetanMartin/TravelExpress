@@ -205,8 +205,13 @@ class RidesController extends Controller
 
         $ride->preference = new Preference($ride->smoker_accepted, $ride->pet_accepted, $ride->radio_accepted, $ride->chat_accepted);
 
+        if (! empty($car = Auth::user()->getCar())) {
+            $rideOfConnectedUser = ($car->id == $ride->car_id);
+        } else {
+            $rideOfConnectedUser = false;
+        }
+
         // Indicates if the current ride is the one of the connected user
-        $rideOfConnectedUser = ((Auth::user()->getCar()->id) == $ride->car_id);
 
         return View('pages.rides.show', compact('ride', 'rideOfConnectedUser'));
     }

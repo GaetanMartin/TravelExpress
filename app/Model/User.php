@@ -4,6 +4,7 @@ namespace App\Model;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -45,6 +46,7 @@ class User extends Authenticatable
             ->join('users', 'cars.user_id', 'users.id')
             ->where('users.id', $this->id)
             ->where('bookings.status', 'messages.pending')
+            ->whereDate('rides.start_time', '>=', Carbon::today()->toDateString())
             ->count('bookings.id');
         return $nb;
     }
