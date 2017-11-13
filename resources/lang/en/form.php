@@ -38,6 +38,7 @@ return [
 	'day' => 'Day(s)',
 	'week' => 'Week(s)',
 	'month' => 'Month(s)',
+	'search' => "Search",
 
 	// Bookings
 	'booking_create' => 'Book a ride',

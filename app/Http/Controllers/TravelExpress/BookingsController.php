@@ -24,8 +24,7 @@ class BookingsController extends Controller
      */
     public function index()
     {
-        $bookings = Booking::where('requester_id', Auth::user()->id)->get();
-
+        $bookings = Booking::where('requester_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
         foreach ($bookings as $booking) {
             $booking->status_color = $this->getColorFromStatus($booking->status);
         }
@@ -37,10 +36,10 @@ class BookingsController extends Controller
         $class = 'list-group-item-';
         switch ($status) {
             case 'messages.pending' : 
-                $class .= 'info';
+                $class .= '';
                 break;
             case 'messages.accepted' :
-                $class .= 'success';
+                $class .= 'info';
                 break;
             case 'messages.denied' :
                 $class .= 'danger';

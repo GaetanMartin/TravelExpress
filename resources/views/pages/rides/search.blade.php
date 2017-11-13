@@ -102,7 +102,7 @@
 	{{-- Submit --}}
 	<div class="form-group">
 	    <div class="col-md-6 col-md-offset-4">
-	        {{ Form::submit(__('form.save'), ['class' => 'btn btn-primary']) }}
+	        {{ Form::submit(__('form.search'), ['class' => 'btn btn-primary']) }}
 	    </div>
 	</div>
 {{ Form::close() }}

@@ -3,6 +3,9 @@ body {
   	padding-top: 70px;
 }
 
+h1 {
+   text-align: center;
+}
 
 /* Rides data table */
 .table_one_line {
