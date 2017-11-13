@@ -27,6 +27,7 @@ return [
     'flash_booking_accepted' => 'Booking accepted! Waiting for payement. ',
     'flash_booking_denied' => 'Booking denied! ',
     'flash_booking_paid' => 'Your booking is confirmed! ',
+    'flash_booking_cancelled' => 'Your booking has been cancelled ! ',
 
     // Home page
     'h1_latest_rides' => 'Latest rides',
@@ -68,6 +69,13 @@ return [
     'accept' => 'Accept',
     'deny' => 'Deny',
     'seats' => 'seat(s)',
+    'total_price' => 'Total price',
+    'pay' => 'Pay',
+    'cancel' => 'Cancel', 
+    'booking' => 'Booking',
+    'pending_passengers' => 'Pending passengers',
+    'pending_payments' => 'Pending payments',
+    'no_notifications' => 'You don\'t have any notifications',
 
     // Rides
     'rides_nb_seats_remaining' => 'Number of seats remaining',

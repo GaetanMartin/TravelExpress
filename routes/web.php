@@ -62,6 +62,7 @@ Route::group(
 		Route::get('bookings/accept/{bid}', 'TravelExpress\BookingsController@accept')->name('bookings.accept');
 		Route::get('bookings/deny/{bid}', 'TravelExpress\BookingsController@deny')->name('bookings.deny');
 		Route::any('bookings/pay/{bid}', 'TravelExpress\BookingsController@pay')->name('bookings.pay');
+		Route::any('bookings/cancel/{bid}', 'TravelExpress\BookingsController@cancel')->name('bookings.cancel');
 
 		// Notifications
 		Route::get('/notifications', 'HomeController@notifications')->name('notifications');

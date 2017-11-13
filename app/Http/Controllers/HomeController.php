@@ -10,6 +10,7 @@ use App\Model\Preference;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App;
+use DB;
 use Illuminate\Support\Facades\Lang;
 
 class HomeController extends Controller
@@ -51,11 +52,14 @@ class HomeController extends Controller
      */
     public function notifications() {
 
+        $user_id = Auth::user()->id;
 
-        $authUserCar = Auth::user()->getCar();
-        $bookings = (empty($authUserCar) ? [] : $this->constructPendingBookingsPerRide($authUserCar->id));
+        $bookingsToBeAccepted = $this->constructPendingBookingsPerRide(Booking::getQueryPendingToBeAccepted($user_id)->get());
 
-        return view('pages.notifications', compact('bookings'));
+        $bookingsToBePaid = $this->constructPendingBookingsPerRide(Booking::getQueryPendingToBePaid($user_id)
+            ->addSelect(DB::raw('(bookings.nb_seats_booked * rides.price) as total_price'))->get());
+
+        return view('pages.notifications', compact('bookingsToBeAccepted', 'bookingsToBePaid'));
     }
 
     /**
@@ -63,9 +67,8 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    private function constructPendingBookingsPerRide($car_id) {
+    private function constructPendingBookingsPerRide($pendingBookings) {
         
-        $pendingBookings = Booking::getPendingBookings($car_id);
         $coTravelersPendingIds = $pendingBookings->keyBy('requester_id')->keys();
 
         // $ridesIds = $pendingBookings->keyBy('ride_id')->keys();

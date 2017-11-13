@@ -41,13 +41,12 @@ class User extends Authenticatable
     }
 
     public function getNbNotifications() {
-        $nb = Booking::join('rides', 'rides.id', 'ride_id')
-            ->join('cars', 'rides.car_id', 'cars.id')
-            ->join('users', 'cars.user_id', 'users.id')
-            ->where('users.id', $this->id)
-            ->where('bookings.status', 'messages.pending')
-            ->whereDate('rides.start_time', '>=', Carbon::today()->toDateString())
-            ->count('bookings.id');
-        return $nb;
+        // Number of bookings pending to be accepted
+        $nbToBeAccepted = Booking::getQueryPendingToBeAccepted($this->id)->count('bookings.id');
+
+        // Number of bookings pending to be paid
+        $nbToBePaid = Booking::getQueryPendingToBePaid($this->id)->count('bookings.id');
+
+        return $nbToBePaid + $nbToBeAccepted;
     }
 }

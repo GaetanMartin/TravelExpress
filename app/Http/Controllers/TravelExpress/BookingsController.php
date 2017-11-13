@@ -78,7 +78,6 @@ class BookingsController extends Controller
     public function show($id)
     {
         $booking = Booking::findOrFail($id);
-        // TODO
         return View('pages.bookings.show', compact('booking'));
     }
 
@@ -91,7 +90,18 @@ class BookingsController extends Controller
         $booking->save();
 
         $request->session()->flash('status_success', Lang::get('messages.flash_booking_paid'));
-        return redirect()->route('bookings.index');
+        return redirect()->route('bookings.show', $id);
+    }
+
+    public function cancel(Request $request, $id) {
+        $user_id = Auth::user()->id;
+
+        $booking = Booking::where('requester_id', $user_id)->where('status', 'messages.accepted')->findOrFail($id);
+        $booking->status = 'messages.denied';
+        $booking->save();
+
+        $request->session()->flash('status_success', Lang::get('messages.flash_booking_cancelled'));
+        return redirect()->route('notifications');
     }
 
     public function accept(Request $request, $id) {
