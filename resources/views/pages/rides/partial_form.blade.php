@@ -74,7 +74,7 @@
     {{-- Datetime picker --}}
     <script type="text/javascript" src="{{ URL::asset('lib/moment/min/moment.min.js')}}"></script>
     <script type="text/javascript" src="{{ URL::asset('lib/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')}}" ></script>
-    <script src="{{ URL::asset('lib/moment/locale/'. $locale . '.js')}}/"></script>
+    <script src="{{ URL::asset('lib/moment/locale/'. $locale . '.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
 
     <script type="text/javascript">
