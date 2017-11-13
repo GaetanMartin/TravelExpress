@@ -21,7 +21,8 @@
 
 		<br>
 
-
+		{{-- Display options only if ride is not passed yet --}}
+		@if($ride->start_time->gte(Carbon\Carbon::now()))
 		<div class="container">
 			<div class="btn-group">
 			@if($rideOfConnectedUser)
@@ -42,6 +43,7 @@
 			@endif
 			</div>
 		</div>
+		@endif
 
 
 		

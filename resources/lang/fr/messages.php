@@ -79,13 +79,16 @@ return [
 
     // Rides
     'rides_nb_seats_remaining' => 'Nombre de places restantes',
+    'no_rides_yet' => 'Vous n\'avez pas encore proposer de trajet',
 
     // Bookings
     'bookings' => 'Réservation',
     'your_bookings' => 'Vos réservations',
-    'messages.pending' => 'En attente',
-    'messages.accepted' => 'Accepté',
-    'messages.denied' => 'Refusé',
-    'messages.confirmed' => 'Confirmé',
+    'your_rides' => 'Vos trajets',
+    'pending' => 'En attente',
+    'accepted' => 'Accepté',
+    'denied' => 'Refusé',
+    'confirmed' => 'Confirmé',
+    'no_bookings_yet' => 'Vous n\'avez pas encore de réservation',
 
 ];

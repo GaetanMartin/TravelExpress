@@ -28,7 +28,7 @@
             		{{-- Logged In --}}
 
                     <li>
-                        <a href="{{ route('notifications') }}" class="{{ Route::is('notifications') ? 'active' : '' }} {{($nbNotifications = Auth::user()->getNbNotifications()) == 0 ? '' : 'badge_notif'}}" data-badge="{{ $nbNotifications }}"><i class="fa fa-bell" aria-hidden="true"></i></a>
+                        <a href="{{ route('notifications') }}" class="{{($nbNotifications = Auth::user()->getNbNotifications()) == 0 ? '' : 'badge_notif'}}" data-badge="{{ $nbNotifications }}"><i class="fa fa-bell" aria-hidden="true"></i></a>
                     </li>
 
                     <li class="dropdown">
@@ -42,7 +42,8 @@
                                 <a href="{{url('/cars')}}"><i class="fa fa-car" aria-hidden="true"></i> @lang('layouts.nav_menu_cars')</a>
                             </li>
                             <li>
-                                <a href="{{ route('bookings.index')}}"><i class="fa fa-book fa-fw" aria-hidden="true"></i> @lang('layouts.nav_menu_bookings')</a>                            </li>
+                                <a href="{{ route('bookings.index')}}"><i class="fa fa-book fa-fw" aria-hidden="true"></i> @lang('layouts.nav_menu_bookings')</a>
+                            </li>
                             <li class="divider"></li>
 
                             <li><a href="{{url('/logout')}}"><i class="fa fa-power-off" aria-hidden="true"></i> @lang('layouts.nav_menu_logout')</a></li>

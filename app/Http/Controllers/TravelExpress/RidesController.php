@@ -115,7 +115,9 @@ class RidesController extends Controller
      */
     public function index()
     {
-        return redirect()->route('home');
+        $user_id = Auth::user()->id;
+        $rides = Ride::getDetailQuery()->where('users.id', $user_id)->get();
+        return view('pages.rides.index', compact('rides'));
     }
 
     /**

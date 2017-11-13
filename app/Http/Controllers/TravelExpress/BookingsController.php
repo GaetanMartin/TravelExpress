@@ -25,7 +25,33 @@ class BookingsController extends Controller
     public function index()
     {
         $bookings = Booking::where('requester_id', Auth::user()->id)->get();
+
+        foreach ($bookings as $booking) {
+            $booking->status_color = $this->getColorFromStatus($booking->status);
+        }
+
         return View('pages.bookings.index', compact('bookings'));
+    }
+
+    private function getColorFromStatus($status) {
+        $class = 'list-group-item-';
+        switch ($status) {
+            case 'messages.pending' : 
+                $class .= 'info';
+                break;
+            case 'messages.accepted' :
+                $class .= 'success';
+                break;
+            case 'messages.denied' :
+                $class .= 'danger';
+                break;
+            case 'messages.confirmed' :
+                $class .= 'success';
+                break;
+            default:
+                $class = '';
+        }
+        return $class;
     }
 
     /**
@@ -78,7 +104,11 @@ class BookingsController extends Controller
     public function show($id)
     {
         $booking = Booking::findOrFail($id);
-        return View('pages.bookings.show', compact('booking'));
+
+        $ride = Ride::findWithDetail($booking->ride_id);
+        $ride->preference = new Preference($ride->smoker_accepted, $ride->pet_accepted, $ride->radio_accepted, $ride->chat_accepted);
+
+        return View('pages.bookings.show', compact('booking', 'ride'));
     }
 
 

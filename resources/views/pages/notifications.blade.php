@@ -5,7 +5,7 @@
     @if( Auth::user()->getNbNotifications() > 0)
 
     	@if(count($bookingsToBeAccepted))
-    	<div class="container">
+    	<div class="">
 		    <h2>@lang('messages.pending_passengers')</h2>
 		    <div class="row">
 
@@ -35,7 +35,7 @@
 		@endif
 
 		@if(count($bookingsToBePaid))
-		<div class="container">
+		<div class="">
 		    <h2>@lang('messages.pending_payments')</h2>
 		    <div class="row">
 

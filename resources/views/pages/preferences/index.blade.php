@@ -1,9 +1,9 @@
-@extends('layouts.default')
+@extends('layouts.sidebar')
 
 @section('content')
 
-	<div class="well">
 		<h1>@lang('messages.preferences')</h1>
+
 
 		<h2>{{ $user->getName() }}</h2>
 
@@ -17,6 +17,5 @@
 			<a href="{{ route('preferences.edit', $preference->id) }}" class="btn btn-info" role="button"><i class="fa fa-pencil" aria-hidden="true"></i> @lang('messages.preferences_edit')</a>
 		@endif
 
-	</div>
 
 @endsection

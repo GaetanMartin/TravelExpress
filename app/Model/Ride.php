@@ -26,7 +26,7 @@ class Ride extends Model
     public static function findWithDetail($id) {
     	return Ride::select('start_time', 'price', 'source_city.city as source_city', 
             'dest_city.city as dest_city', 'preferences.*', 'rides.nb_seats_offered', 
-            'rides.luggage_size', 'rides.id', 'rides.car_id')
+            'rides.luggage_size', 'rides.id', 'rides.car_id', 'users.first_name as driver_first_name', 'users.last_name as driver_last_name')
             ->join('cities as source_city', 'rides.source_city_id', 'source_city.id')
             ->join('cities as dest_city', 'rides.dest_city_id', 'dest_city.id')
             ->join('cars', 'rides.car_id', 'cars.id')

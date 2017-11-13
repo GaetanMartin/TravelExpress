@@ -79,13 +79,16 @@ return [
 
     // Rides
     'rides_nb_seats_remaining' => 'Number of seats remaining',
+    'no_rides_yet' => 'You don\'t have any rides yet',
 
     // Bookings
     'bookings' => 'Bookings',
     'your_bookings' => 'Your Bookings',
-    'messages.pending' => 'pending',
-    'messages.accepted' => 'accepted',
-    'messages.denied' => 'denied',
-    'messages.confirmed' => 'confirmed',
+    'your_rides' => 'Vos trajets',
+    'pending' => 'pending',
+    'accepted' => 'accepted',
+    'denied' => 'denied',
+    'confirmed' => 'confirmed',
+    'no_bookings_yet' => 'You don\'t have any bookings yet',
 
 ];
