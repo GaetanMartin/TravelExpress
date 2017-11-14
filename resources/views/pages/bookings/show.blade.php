@@ -21,6 +21,10 @@
 		    <li>@lang('messages.th_luggage_size') : {{__($ride->luggage_size)}}</li>
 		</ul>
 
+		@if($booking->status == 'messages.accepted')
+		<a href="{{ route('bookings.payment', ['id' => $booking->id]) }}" class="btn btn-info" role="button"><i class="fa fa-check" aria-hidden="true"></i> @lang('messages.pay')</a>
+		@endif
+
 		@include('helpers.preferences.inline', ['preference'=> $ride->preference])
 	</div>
 
