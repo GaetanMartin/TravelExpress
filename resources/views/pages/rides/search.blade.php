@@ -77,7 +77,7 @@
 	</div>
 	
 	{{-- Price Range --}}
-	<div class="form-group{{ $errors->has('luggage_size') ? ' has-error' : '' }}">
+	<div class="form-group{{ $errors->has('price_range') ? ' has-error' : '' }}">
     	{{ Form::labelField('price_range', __('form.ride_label_price_range')) }}
 		<div class="col-md-6">
 			<input id="price_range-enabled" checked type="checkbox"/>
@@ -153,6 +153,6 @@
 
         document.getElementById("source_city").selectedIndex = 1254; // Chicoutimi
         document.getElementById("dest_city").selectedIndex = 1373; // Montreal
-        document.getElementById("luggage_size").selectedIndex = 1; // Montreal
+        document.getElementById("luggage_size").selectedIndex = 2; // Large
     </script>
 @endsection
