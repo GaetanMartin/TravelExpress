@@ -68,16 +68,14 @@ class RidesController extends Controller
         }
 
 
-        if ($request->has('nb_seats_offered')) {
-            $rq->where('nb_seats_offered', '>=', $request->input('nb_seats_offered'));
-        }
+
 
         if ($request->has('start_time_from')) {
             $start_time_from = Carbon::createFromFormat('d/m/Y H:i', $request->input('start_time_from'))->toDateTimeString();
             $rq->whereDate('start_time', '>=', $start_time_from);
         }
 
-        if ($request->has('start_time_to')) {
+        if ($request->has('start_time_to')) {   
             $start_time_to = Carbon::createFromFormat('d/m/Y H:i', $request->input('start_time_to'))->toDateTimeString();
             $rq->whereDate('start_time', '<=', $start_time_to);
         }
@@ -92,8 +90,12 @@ class RidesController extends Controller
                 $acceptable_sizes[] = 'messages.medium';
                 $acceptable_sizes[] = 'messages.large';
             }
-            $rq->whereIn('luggage_size', array($acceptable_sizes));
+            $rq->whereIn('luggage_size', $acceptable_sizes);
         }
+
+        // print_r($request->input('nb_seats_offered'));
+        // print_r($request->input('dest_city'));
+        // die;
 
         $rides = $rq->get();
 
